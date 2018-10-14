@@ -33,6 +33,21 @@ RSpec.describe StatusPageRuby::Status do
     end
   end
 
+  describe '#history_record' do
+    [
+      [nil, nil, nil, nil],
+      ['', '', '', ''],
+      [1, 2, 3, 4],
+      ['Github', 'up', 'All Good', 1_539_506_590]
+    ].each do |service, state, status, time|
+      context "with service: #{service}, state: #{state}, status: #{status} and time: #{time}" do
+        subject { described_class.new(service, state, status, time).history_record }
+
+        it { is_expected.to eq([service.to_s, state.to_s, time.to_s]) }
+      end
+    end
+  end
+
   describe '#to_csv' do
     [
       [[nil, nil, nil, nil],                        "\"\",\"\",\"\",\"\"\n"],

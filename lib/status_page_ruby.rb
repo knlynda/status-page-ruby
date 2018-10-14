@@ -1,6 +1,7 @@
 require 'nokogiri'
 require 'open-uri'
 require 'csv'
+require 'terminal-table'
 require 'status_page_ruby/version'
 require 'status_page_ruby/status'
 require 'status_page_ruby/storage'

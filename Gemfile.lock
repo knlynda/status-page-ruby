@@ -3,6 +3,7 @@ PATH
   specs:
     status_page_ruby (0.0.1)
       nokogiri
+      terminal-table
       thor
 
 GEM
@@ -41,6 +42,8 @@ GEM
       ruby-progressbar (~> 1.7)
       unicode-display_width (~> 1.0, >= 1.0.1)
     ruby-progressbar (1.10.0)
+    terminal-table (1.8.0)
+      unicode-display_width (~> 1.1, >= 1.1.1)
     thor (0.20.0)
     unicode-display_width (1.4.0)
 

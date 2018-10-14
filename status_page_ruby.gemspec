@@ -17,5 +17,6 @@ Gem::Specification.new do |gem|
   gem.license       = 'MIT'
 
   gem.add_runtime_dependency 'nokogiri'
+  gem.add_runtime_dependency 'terminal-table'
   gem.add_runtime_dependency 'thor'
 end
