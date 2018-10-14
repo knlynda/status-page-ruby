@@ -2,9 +2,9 @@ PATH
   remote: .
   specs:
     status_page_ruby (0.0.1)
-      nokogiri
-      terminal-table
-      thor
+      nokogiri (= 1.8.5)
+      terminal-table (= 1.8.0)
+      thor (= 0.20.0)
 
 GEM
   remote: https://rubygems.org/

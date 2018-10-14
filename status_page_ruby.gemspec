@@ -16,7 +16,7 @@ Gem::Specification.new do |gem|
   gem.homepage      = 'http://rubygems.org/gems/status_page_ruby'
   gem.license       = 'MIT'
 
-  gem.add_runtime_dependency 'nokogiri'
-  gem.add_runtime_dependency 'terminal-table'
-  gem.add_runtime_dependency 'thor'
+  gem.add_runtime_dependency 'nokogiri', '1.8.5'
+  gem.add_runtime_dependency 'terminal-table', '1.8.0'
+  gem.add_runtime_dependency 'thor', '0.20.0'
 end
