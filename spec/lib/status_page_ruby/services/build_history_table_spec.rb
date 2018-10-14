@@ -13,9 +13,9 @@ RSpec.describe StatusPageRuby::Services::BuildHistoryTable do
   describe '#call' do
     before do
       File.write(data_file_path, <<-CSV.delete(' '))
-        test1,up,Success,1
-        test1,down,Failure,2
-        test2,up,Success,3
+        test1,up,Success,1539506590
+        test1,down,Failure,1539507591
+        test2,up,Success,1539508592
       CSV
     end
 
@@ -24,12 +24,12 @@ RSpec.describe StatusPageRuby::Services::BuildHistoryTable do
         subject { service.call('test1') }
         let(:expected_table) do
           <<-TABLE.gsub(/^ +/, '').strip
-            +---------+--------+------+
-            | Service | Status | Time |
-            +---------+--------+------+
-            | test1   | up     | 1    |
-            | test1   | down   | 2    |
-            +---------+--------+------+
+            +---------+--------+---------------------+
+            | Service | Status | Time                |
+            +---------+--------+---------------------+
+            | test1   | up     | 14.10.2018 10:43:10 |
+            | test1   | down   | 14.10.2018 10:59:51 |
+            +---------+--------+---------------------+
           TABLE
         end
 
@@ -55,13 +55,13 @@ RSpec.describe StatusPageRuby::Services::BuildHistoryTable do
       subject { service.call }
       let(:expected_table) do
         <<-TABLE.gsub(/^ +/, '').strip
-            +---------+--------+------+
-            | Service | Status | Time |
-            +---------+--------+------+
-            | test1   | up     | 1    |
-            | test1   | down   | 2    |
-            | test2   | up     | 3    |
-            +---------+--------+------+
+            +---------+--------+---------------------+
+            | Service | Status | Time                |
+            +---------+--------+---------------------+
+            | test1   | up     | 14.10.2018 10:43:10 |
+            | test1   | down   | 14.10.2018 10:59:51 |
+            | test2   | up     | 14.10.2018 11:16:32 |
+            +---------+--------+---------------------+
         TABLE
       end
 

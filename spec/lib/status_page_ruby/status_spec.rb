@@ -35,15 +35,15 @@ RSpec.describe StatusPageRuby::Status do
 
   describe '#history_record' do
     [
-      [nil, nil, nil, nil],
-      ['', '', '', ''],
-      [1, 2, 3, 4],
-      ['Github', 'up', 'All Good', 1_539_506_590]
-    ].each do |service, state, status, time|
-      context "with service: #{service}, state: #{state}, status: #{status} and time: #{time}" do
-        subject { described_class.new(service, state, status, time).history_record }
+      [[nil, nil, nil, 1_539_506_590],              ['', '', '14.10.2018 10:43:10']],
+      [['', '', '', 1_539_506_590],                 ['', '', '14.10.2018 10:43:10']],
+      [[1, 2, 3, 1_539_506_590],                    ['1', '2', '14.10.2018 10:43:10']],
+      [['Github', 'up', 'All Good', 1_539_506_590], ['Github', 'up', '14.10.2018 10:43:10']]
+    ].each do |args, result|
+      context "with service: #{args[0]}, state: #{args[1]}, status: #{args[2]} and time: #{args[3]}" do
+        subject { described_class.new(*args).history_record }
 
-        it { is_expected.to eq([service.to_s, state.to_s, time.to_s]) }
+        it { is_expected.to eq(result) }
       end
     end
   end
