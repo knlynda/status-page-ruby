@@ -3,8 +3,7 @@ module StatusPageRuby
     attr_reader :data_file_path
 
     def initialize(data_file_path)
-      raise ArgumentError, 'Invalid file given.' unless valid_file?(data_file_path)
-
+      validate_file(data_file_path)
       @data_file_path = data_file_path
     end
 
@@ -32,20 +31,21 @@ module StatusPageRuby
     end
 
     def copy(target_file_path)
-      FileUtils.cp(
-        data_file_path,
-        target_file_path
-      )
+      FileUtils.mkpath(File.dirname(target_file_path))
+      FileUtils.cp(data_file_path, target_file_path)
     end
 
     def restore(new_file_path)
+      validate_file(new_file_path)
       merge(CSV.foreach(new_file_path).to_a)
     end
 
     private
 
-    def valid_file?(path)
-      File.file?(path.to_s) && File.readable?(path.to_s)
+    def validate_file(path)
+      return if File.file?(path.to_s) && File.readable?(path.to_s)
+
+      raise ArgumentError, 'Invalid file given.'
     end
 
     def merge_records(records)

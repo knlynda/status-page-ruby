@@ -96,24 +96,36 @@ RSpec.describe StatusPageRuby::Storage do
     end
   end
 
-  describe '#restore' do
+  describe '#copy' do
     let(:data_file_path) { Tempfile.new('data_file_path').path }
     let(:target_file_path) { Tempfile.new('data_file_path').path }
+
+    before { File.write(data_file_path, "a,a,a\nb,b,b\nc,c,c\n") }
+
+    it do
+      described_class.new(data_file_path).copy(target_file_path)
+      expect(File.read(target_file_path)).to eq("a,a,a\nb,b,b\nc,c,c\n")
+    end
+  end
+
+  describe '#restore' do
+    let(:data_file_path) { Tempfile.new('data_file_path').path }
+    let(:new_file_path) { Tempfile.new('new_file_path').path }
 
     [
       %W[a,a,a\nc,c,c\n a,a,a\nb,b,b\n a,a,a\nb,b,b\nc,c,c\n],
       %W[a,a,a\nc,c,c\n a,a,a\n a,a,a\nc,c,c\n],
       %W[a,a,a\nc,c,c\n a,a,a\n a,a,a\nc,c,c\n],
       %W[a,a,a\nc,c,c\n a,a,a\nc,c,c\n a,a,a\nc,c,c\n]
-    ].each do |data, target, result|
+    ].each do |data_file_content, new_file_content, result|
       context do
         before do
-          File.write(data_file_path, data)
-          File.write(target_file_path, target)
+          File.write(data_file_path, data_file_content)
+          File.write(new_file_path, new_file_content)
         end
 
         it do
-          described_class.new(data_file_path).restore(target_file_path)
+          described_class.new(data_file_path).restore(new_file_path)
           expect(File.read(data_file_path)).to eq(result)
         end
       end
