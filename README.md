@@ -1,5 +1,7 @@
 # Status page
 
+[![CircleCI](https://circleci.com/gh/knlynda/status-page-ruby.svg?style=svg)](https://circleci.com/gh/knlynda/status-page-ruby)
+
 ## Installation
 
 Install nokogiri dependencies, follow the link http://www.nokogiri.org/tutorials/installing_nokogiri.html for details.
