@@ -22,7 +22,7 @@ module StatusPageRuby
     end
 
     def history_record
-      [service, state, Time.at(time.to_i).strftime(HISTORY_RECORD_TIME_FORMAT)]
+      [service, state, Time.at(time.to_i).utc.strftime(HISTORY_RECORD_TIME_FORMAT)]
     end
 
     def record
