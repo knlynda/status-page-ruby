@@ -10,6 +10,7 @@ module StatusPageRuby
         //*[contains(@class,"component-status")]
            [not(contains(.,"Re-routed"))]
            [not(contains(.,"Operational"))]
+           [not(contains(.,"Partial Outage"))]
       XPATH
 
       def status
