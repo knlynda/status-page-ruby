@@ -26,7 +26,6 @@ RSpec.describe StatusPageRuby::Services::BuildLogTable do
       it { is_expected.to eq(expected_table) }
     end
 
-
     context 'with empty records' do
       let(:records) { [] }
       let(:expected_table) do
