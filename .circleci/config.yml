@@ -1,0 +1,25 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/ruby:2.4.1
+    steps:
+      - checkout
+      # Restore bundle cache
+      - type: cache-restore
+        key: status_page_ruby-{{ checksum "Gemfile.lock" }}
+
+      # Bundle install dependencies
+      - run: bundle install --path vendor/bundle
+
+      # Store bundle cache
+      - type: cache-save
+        key: status_page_ruby-{{ checksum "Gemfile.lock" }}
+        paths:
+          - vendor/bundle
+
+      # Rubocop
+      - run: bundle exec rubocop
+
+      # Unit tests
+      - run: bundle exec rspec
