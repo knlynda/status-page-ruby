@@ -63,7 +63,7 @@ class StatusPageRubyCli < Thor
     @build_log_table = StatusPageRuby::Services::BuildLogTable.new
     @build_stats_table = StatusPageRuby::Services::BuildStatsTable.new(status_repository)
     @pull_statuses = StatusPageRuby::Services::PullStatuses.new(status_repository)
-    @backup_data = StatusPageRuby::Services::RestoreData.new(status_repository.storage)
+    @backup_data = StatusPageRuby::Services::BackupData.new(status_repository.storage)
     @restore_data = StatusPageRuby::Services::RestoreData.new(status_repository.storage)
   end
 
